@@ -1,0 +1,7 @@
+include:
+  - project: 'byuhbll/support/gitlab/ci'
+    ref: '1'
+    file: 'python-app.yml'
+
+variables:
+    BASE_PATH: "libcal-bookings"

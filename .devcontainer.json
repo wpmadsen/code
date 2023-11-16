@@ -1,0 +1,20 @@
+{
+    // This is the defualt devcontainer file that is meant to be
+    // committed to the repo. If you would like to override
+    // this devcontainer file with your own (e.g. to add other
+    // extensions), create a custom devcontainer file at
+    // .devcontainer/devcontainer.json.
+    "dockerComposeFile": "${localWorkspaceFolder}/docker-compose.yml",
+    "remoteUser": "vscode",
+    "name": "libcal-bookings",
+    "workspaceFolder": "/code",
+    "service": "app",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python"
+            ]
+        }
+    },
+    "postCreateCommand": "/code/project/entrypoint.dev.sh"
+}

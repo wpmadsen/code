@@ -1,0 +1,77 @@
+# This file is the base config used by your project. The specified config file
+# (application.yml, application-test.yml, etc.) should extend this file. You can extend
+# this file by adding `extends: "application-base.yml"` at the root of other yaml
+# config files.
+#
+# Commented-out key/value pairs are other available configurations, listed here
+# for easy reference. In general, you should use them in the surface-level
+# config rather than uncommenting them here.
+#
+# If you plan to override a config value with an environment variable, the keypath needs
+# to exist in this file.
+
+meta:
+  python_version: 3.8
+  django_project_template_version: "23.9.1"
+  project_name: "LibCal Bookings"
+  developers: []
+  designers: []
+
+dry:
+  project_identifier: "libcal_bookings"
+  project_slug: "libcal-bookings"
+  port: 8080
+  secure_cookies: false
+  user_info_signal: false
+  logging:
+    root_level: "DEBUG"
+    root_handlers: ["console"]
+    console_formatter: "color"
+    ignored_loggers:
+      - "tornado"
+      - "livereload"
+      - "asyncio"
+      - "urllib3"
+      - "bayou"
+      - "PIL"
+      - "paramiko"
+      - "faker"
+    django_loggers:
+      django.template: "WARNING"
+      django.db.backends: "INFO"
+      django.utils.autoreload: "INFO"
+    # override:
+    #   loggers:
+    #     storages:
+    #       level: "DEBUG"
+
+django:
+  debug: true
+  secret_key: ")ie0-u=w*lfbrz05ip9q130&tkk*saf*nfag$(16vf^m+kw8sl"
+  email_backend: "django.core.mail.backends.console.EmailBackend"
+  default_from_email: "BYU Library <support@lib.byu.edu>"
+  server_email: "libcal-bookings <no-reply@lib.byu.edu>"
+  email_subject_prefix: "[libcal-bookings]"
+  allowed_hosts: []
+  force_script_name: "/"
+  static_root: "/code/static"
+  databases:
+    default:
+      ENGINE: "django.db.backends.postgresql"
+      NAME: "libcal_bookings"
+      USER: "root"
+      PASSWORD: "asdf"
+      HOST: "postgres"
+      PORT: 5432
+  caches:
+    default:
+      BACKEND: "django.core.cache.backends.filebased.FileBasedCache"
+      LOCATION: "/tmp/data/django-cache"
+
+cas:
+  enabled: true
+  server: "https://cas.byu.edu/cas/"
+
+bayou:
+  client_id: "placeholder"
+  client_secret: "placeholder"

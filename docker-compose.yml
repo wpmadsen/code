@@ -1,0 +1,26 @@
+version: "3.7"
+
+services:
+  app:
+    image: "libcal-bookings:dev"
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+      args:
+        USER_UID: 1001
+    container_name: "libcal-bookings-dev"
+    ports:
+      - "${HOST_PORT:-8080}:8080"
+      - "2${HOST_PORT:-8080}:28080"
+    stdin_open: true
+    tty: true
+    volumes:
+      - ".:/code"
+    environment:
+    # When creating the Django superuser, use $NETID if it exists (set this
+    # if your Net ID doesn't match your username), otherwise default to $USER
+    - SUPERUSER=${NETID:-$USER}
+
+networks:
+  default:
+    name: docker-environment_default

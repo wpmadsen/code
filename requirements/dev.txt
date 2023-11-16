@@ -1,0 +1,12 @@
+-r base.txt
+
+Werkzeug
+black
+django-debug-toolbar
+django-livereload-server
+fabric
+flake8
+invoke
+ipython
+pre-commit
+tox

@@ -1,0 +1,51 @@
+# ------------------------------------------------------------------------------
+# Type `docker-compose up -d` to run this app for development work.
+#
+# If your Net ID isn't the same as your local username, then set the NETID
+# environment variable before you start this: export $NETID=yournetid
+#
+# If you need/want to build or run the image manually, here's how:
+# Dev build:  docker build -t libcal-bookings-dev .
+# Dev run:    docker run --rm -itv `pwd`:/code --name libcal-bookings-dev --network docker-environment_default libcal-bookings:dev
+#
+# Largely inspired by: https://github.com/caktus/dockerfile_post/blob/master/Dockerfile
+# ------------------------------------------------------------------------------
+FROM registry.gitlab.com/byuhbll/apps/images/django:3.2-python3.8
+
+ARG USERNAME=vscode
+ARG USER_UID=1001
+ARG USER_GID=1000
+
+# Create the user
+RUN groupadd --gid $USER_GID $USERNAME \
+    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
+
+# Copy dependency files
+COPY requirements /requirements
+
+RUN set -ex \
+    && apt-get update \
+    # build deps and tools
+    && apt-get install -y \
+        curl \
+        procps \
+        git \
+        vim \
+    # npm
+    && curl -sL https://deb.nodesource.com/setup_18.x | bash - \
+    && apt-get install -y nodejs \
+    && npm install -g gulp-cli \
+    # pip
+    && pip install --no-cache-dir -U pip \
+    && pip install --no-cache-dir -r /requirements/dev.txt \
+    # cleanup
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+USER $USERNAME
+WORKDIR /code
+ENV SHELL /bin/bash
+ENV PATH="/home/${USERNAME}/.local/bin:${PATH}"
+
+ENTRYPOINT ["bash", "/code/project/entrypoint.dev.sh"]
+CMD ["top"]

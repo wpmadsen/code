@@ -1,0 +1,15 @@
+colorlog
+Django~=3.2.0
+django-cas-client~=1.5
+django-extensions~=3.2
+django-filter~=23.0
+django-hijack~=3.4
+django-model-utils~=4.3
+djangorestframework~=3.14
+requests~=2.31
+whitenoise~=6.5
+
+--extra-index-url=https://pypi.lib.byu.edu
+bayou~=1.11
+configuro~=3.3
+django-dry~=1.2

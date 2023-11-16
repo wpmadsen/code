@@ -1,0 +1,39 @@
+# ignore everything
+*
+# but check all dirs for whitelisted files
+!*/
+
+# whitelist
+!/.vscode/launch.example.json
+!/assets/**
+!/project/*.py
+!/project/application-*.yml
+!/project/entrypoint.*.sh
+!/project/uwsgi.ini
+!/requirements/*.txt
+!/tasks/*
+!/templates/**/*.html
+!/users/**/*.py
+!/libcal_bookings/**/*.py
+!/libcal_bookings/static/**
+
+!/.devcontainer.json
+!/.gitignore
+!/.gitlab-ci.yml
+!/.pre-commit-config.yaml
+!/docker-compose.yml
+!/Dockerfile
+!/Dockerfile.dev
+!/manage.py
+!/package-lock.json
+!/package.json
+!/pyproject.toml
+!/README.md
+!/setup.cfg
+!/tox.ini
+
+# blacklist
+.DS_Store
+*.map
+*.swp
+application.yml

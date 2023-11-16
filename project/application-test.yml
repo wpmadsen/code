@@ -1,0 +1,10 @@
+extends: "application-base.yml"
+
+django:
+  debug: false
+  staticfiles_storage: "django.contrib.staticfiles.storage.StaticFilesStorage"
+  static_root: "/tmp/static"
+
+dry:
+  logging:
+    root_level: "CRITICAL"

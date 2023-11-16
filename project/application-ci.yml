@@ -1,0 +1,11 @@
+# GitLab CI config for LibCal Bookings.
+#
+# The GitLab CI uses a Postgres database to run the tests. This file extends
+# the configurations defined in application-test.yml.
+extends: "application-test.yml"
+
+django:
+  databases:
+    default:
+      USER: "runner"
+      PASSWORD: "running"
